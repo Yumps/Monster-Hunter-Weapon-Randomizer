@@ -44,8 +44,5 @@ function choices(){
         mhAnswerText.textContent = selected;
 }
 
-
-
-
-//visual randomization?????
-// function needs to grab inputs put in a list randomize list spit one
+// Create a button that will check/uncheck all
+// style
