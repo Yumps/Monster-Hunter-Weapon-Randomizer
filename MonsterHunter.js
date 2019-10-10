@@ -24,25 +24,45 @@ mhList.forEach(item => {
     radioLabel.appendChild(radioButton);
 });
 
+const checkAllButton = document.createElement("button");
+checkAllButton.onclick = () => checkAll();
+const cAButtonLabel = document.createElement("label");
+cAButtonLabel.textContent = "Check All";
+
 container.appendChild(mhHeader);
 mhHeader.appendChild(mhHeaderText);
 container.appendChild(randomizerOptionsContainer);
+randomizerOptionsContainer.appendChild(checkAllButton);
 randomizerOptionsContainer.appendChild(randomizeButton);
 randomizeButton.appendChild(rndButtonLabel);
+checkAllButton.appendChild(cAButtonLabel);
 container.appendChild(mhAnswerDiv);
 mhAnswerDiv.appendChild(mhAnswerText);
 
-function choices(){
-    var items = document.getElementsByName('choice');
-    var selectedItems = [];
-    for(var i = 0; i < items.length; i++){
-        if(items[i].type == 'checkbox' && items[i].checked == true)
-            selectedItems.push(items[i].value);
-        }
-        let selected = selectedItems[Math.floor(Math.random() * selectedItems.length)];
+let checkboxChoices = document.getElementsByName('choice');
 
-        mhAnswerText.textContent = selected;
+function choices(){
+    let selectedCheckboxes = [];
+    for(var i = 0; i < checkboxChoices.length; i++){
+        if(checkboxChoices[i].type == 'checkbox' && checkboxChoices[i].checked == true)
+            selectedCheckboxes.push(checkboxChoices[i].value);
+        }
+        let randomChoice = selectedCheckboxes[Math.floor(Math.random() * selectedCheckboxes.length)];
+
+        mhAnswerText.textContent = randomChoice;
+}
+
+function checkAll() {
+    for(var i = 0; i < checkboxChoices.length; i++){
+        if(checkboxChoices[i].checked){
+            checkboxChoices[i].checked = false;
+        }
+        else{
+            checkboxChoices[i].checked = true;
+        }
+    }
 }
 
 // Create a button that will check/uncheck all
+// also create a button that will randomly check some boxes
 // style
