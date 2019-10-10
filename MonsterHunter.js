@@ -4,7 +4,7 @@ const mhHeaderText = document.createTextNode("Monster Hunter Randomizer");
 const randomizerOptionsContainer = document.createElement("div");
 const mhList = ["Sword and Shield", "Dual Blades", "Greatsword", "Long Sword", "Hammer", "Hunting Horn", "Lance", "Gun Lance", "Switch Axe", "Charge Blade", "Insect Glaive", "Light Bowgun", "Heavy Bowgun", "Bow"];
 const mhAnswerDiv = document.createElement("div");
-const mhAnswerText = document.createElement("h1");
+const mhAnswerText = document.createElement("h3");
 
 
 const checkAllButton = document.createElement("button");
@@ -13,7 +13,7 @@ const cAButtonLabel = document.createElement("label");
 cAButtonLabel.textContent = "Check All";
 
 const randomizeButton = document.createElement("button");
-randomizeButton.onclick = () => choices();
+randomizeButton.addEventListener("click", () => choices());
 const rndButtonLabel = document.createElement("label");
 rndButtonLabel.textContent = "Randomize";
 
@@ -26,6 +26,8 @@ mhList.forEach(item => {
     radioLabel.textContent = item;
     randomizerOptionsContainer.appendChild(radioLabel)
     radioLabel.appendChild(radioButton);
+    let space = document.createElement("br");
+    randomizerOptionsContainer.appendChild(space);
 });
 
 
@@ -44,7 +46,7 @@ let checkboxChoices = document.getElementsByName('choice');
 function choices(){
     let selectedCheckboxes = [];
     for(let i = 0; i < checkboxChoices.length; i++){
-        if(checkboxChoices[i].type == 'checkbox' && checkboxChoices[i].checked == true)
+        if(checkboxChoices[i].checked == true)
         {
             selectedCheckboxes.push(checkboxChoices[i].value);
             let randomChoice = selectedCheckboxes[Math.floor(Math.random() * selectedCheckboxes.length)];
@@ -63,6 +65,6 @@ function checkAll() {
             }
         }
     }
-// Create a button that will check/uncheck all
-// also create a button that will randomly check some boxes
-// style
+
+
+// fix bug when clicking randomize button if no selections were made it wont allow you to add selections then randomize
